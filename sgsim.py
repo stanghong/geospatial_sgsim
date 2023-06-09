@@ -4,7 +4,7 @@
 # 
 # ### with GSLIB's SGSIM Program Converted to Python
 # 
-# #### Michael Pyrcz, Associate Professor, University of Texas at Austin 
+# #### Modified from  Michael Pyrcz, Associate Professor, University of Texas at Austin 
 
 
 
@@ -344,12 +344,5 @@ print(x)
 # %%
 
 
-# %% [markdown]
-# I hope you find this code and demonstration useful. I'm always happy to discuss geostatistics, statistical modeling, uncertainty modeling and machine learning,
-# 
-# *Michael*
-# 
-# **Michael Pyrcz**, Ph.D., P.Eng. Associate Professor The Hildebrand Department of Petroleum and Geosystems Engineering, Bureau of Economic Geology, The Jackson School of Geosciences, The University of Texas at Austin
-# On Twitter I'm the **GeostatsGuy** and on YouTube my lectures are on the channel, **GeostatsGuy Lectures**.
 
 
