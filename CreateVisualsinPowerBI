@@ -1,0 +1,57 @@
+# dataset = pandas.DataFrame(PERM_MITCH, wells, XDT, XFACIES, XGR, XPEF, XPORT, XRESD, XRESM, XRESS, XSP, XRHOB, XSWT, Zones)
+# dataset = dataset.drop_duplicates()
+
+# Paste or type your script code here:
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+df = dataset  # Make sure 'XPORT' is a column in your dataset
+numeric_cols = ['DEPTH', 'XPEF', 'XRESM', 'XRHOB', 'XPORT', 'XSWT', 'XRESD', 'XSP', 'XGR', 'PERM_MITCH', 'PERM_KENT', 'XRESS', 'XCAL']
+#numeric_cols += ['XRESD_log', 'XRESM_log','XRESS_log']
+numeric_cols = [col for col in numeric_cols if col not in ['XRESD', 'XRESM', 'XRESS']]
+correlation_matrix = df[numeric_cols].corr()
+# %%%
+
+# Create a mask to hide the lower triangle
+mask = np.triu(np.ones_like(correlation_matrix, dtype=bool))
+
+# Plot the heatmap
+plt.figure(figsize=(10, 8))  # Adjust figsize as needed
+sns.heatmap(correlation_matrix, mask=mask, cmap='coolwarm', annot=True, fmt=".2f", vmin=-1, vmax=1)
+plt.title('Correlation Matrix between XSWT and other features')
+plt.show()
+
+# Show plot
+plt.show()
+
+# -------------------------------------------------
+# Paste or type your script code here:
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+df = dataset  # Make sure 'XPORT' is a column in your dataset
+numeric_cols = ['DEPTH', 'XPEF', 'XRESM', 'XRHOB', 'XPORT', 'XSWT', 'XRESD', 'XSP', 'XGR', 'PERM_MITCH', 'PERM_KENT', 'XRESS', 'XCAL']
+numeric_cols += ['XRESD_log', 'XRESM_log','XRESS_log']
+numeric_cols = [col for col in numeric_cols if col not in ['XRESD', 'XRESM', 'XRESS']]
+# %%
+for idx in df['XFACIES'].unique():
+    # Filtering the DataFrame for the current category in 'XFACIES'
+    filtered_df = df[df['XFACIES'] == idx]
+    
+    # Creating the pairplot for the filtered DataFrame
+    # Since all points in the plot belong to the same 'XFACIES' value, 'hue' might not be necessary. However, it's kept here for completeness.
+    sns.pairplot(filtered_df[['XSWT', 'XPORT', 'XGR', 'XRESD_log', 'XRESM_log', 'XFACIES']], hue='XFACIES', corner=True)
+    
+    # Setting the title to indicate the current 'XFACIES' category being plotted
+    plt.suptitle(f'Pairplot for XFACIES = {idx}')
+    
+    # Displaying the plot
+    plt.show()
+
+
+#  Percentil
+P10XPORT = PERCENTILEX.INC(df, df[XPORT], 0.1)
